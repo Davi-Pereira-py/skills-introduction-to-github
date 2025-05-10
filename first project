@@ -1,0 +1,24 @@
+import random
+
+def roll_dice() -> int:
+    return random.randint(1, 6) + random.randint(1, 6)
+
+def combat(monsters: int, life_points: int) -> None:
+    for i in range(monsters):
+        damage = roll_dice()
+        print(f"\nattack #{i+1}: damage hit = {damage}")
+
+        if damage >= 10:
+            print("you kill a monster!")
+        else:
+            lost = 10 - damage
+            life_points -= lost
+            print(f"You dont kill a monster. lost {lost} life points.")
+
+        if life_points <= 0:
+            print("You die!")
+            return
+
+    print(f"\nfinish the combat. Last life points : {life_points}")
+
+combat(monsters=3, life_points=20)
